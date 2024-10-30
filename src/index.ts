@@ -8,7 +8,7 @@ app.use(cors());
 app.use(express.json());
 
 app.get('/api/hello', (req, res) => {
-    res.json({ message: 'Hello from your Node.js backend!' });
+    res.json({ message: 'Hello!' });
 });
 
 app.listen(port, () => {
