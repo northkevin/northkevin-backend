@@ -1,6 +1,6 @@
 [tools]
 python = "latest"
-node = "20"
+node = "20.12.2"
 [env]
 NODE_ENV = "production"
 PORT = "8080"
