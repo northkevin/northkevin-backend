@@ -3,9 +3,10 @@ import cors from 'cors';
 import jwt from 'jsonwebtoken';
 import type { RequestHandler } from 'express';
 import { recentLearnings } from './data/learnings';
+import config from './config/env';
 
 const app = express();
-const port = process.env.PORT || 8080;
+const port = config.port;
 
 // Middleware setup - move these to the top
 const isDevelopment = process.env.NODE_ENV !== 'production';
@@ -18,8 +19,8 @@ app.use(cors({
 app.use(express.json()); // This is crucial for parsing JSON request bodies
 
 // Secret key and password setup
-const JWT_SECRET = process.env.JWT_SECRET || 'northkevin-jwt-secret-key-2024-03-17';
-const DEV_PASSWORD = process.env.DEV_PASSWORD || 'passworm';
+const JWT_SECRET = config.jwtSecret;
+const DEV_PASSWORD = config.devPassword;
 
 // Warning logs for missing env vars
 if (!process.env.JWT_SECRET) {
@@ -125,10 +126,10 @@ app.post('/api/learnings', authenticateToken, addLearningHandler);
 
 // Add HTTPS redirect middleware
 app.use((req, res, next) => {
-  if (process.env.NODE_ENV === 'production' && !req.secure) {
-    return res.redirect(['https://', req.get('Host'), req.url].join(''));
-  }
-  next();
+    if (process.env.NODE_ENV === 'production' && !req.secure) {
+        return res.redirect(['https://', req.get('Host'), req.url].join(''));
+    }
+    next();
 });
 
 // After all routes are registered
@@ -142,4 +143,11 @@ app._router.stack.forEach((r: any) => {
 // Start server
 app.listen(port, () => {
     console.log(`Server is running on port ${port}`);
+    console.log(`Environment: ${config.nodeEnv}`);
+    console.log('Required environment variables:', {
+        JWT_SECRET: JWT_SECRET ? '✓ Set' : '✗ Missing',
+        DEV_PASSWORD: DEV_PASSWORD ? '✓ Set' : '✗ Missing',
+        PORT: port,
+        NODE_ENV: config.nodeEnv
+    });
 });
