@@ -117,6 +117,13 @@ const addLearningHandler = (req: Request, res: Response) => {
 
 app.post('/api/learnings', authenticateToken, addLearningHandler);
 
+// Add HTTPS redirect middleware
+app.use((req, res, next) => {
+  if (process.env.NODE_ENV === 'production' && !req.secure) {
+    return res.redirect(['https://', req.get('Host'), req.url].join(''));
+  }
+  next();
+});
 
 // Start server
 app.listen(port, () => {
