@@ -47,6 +47,12 @@ const authenticateToken = (req: any, res: any, next: any) => {
     });
 };
 
+// At the top of your routes
+app.use((req, res, next) => {
+    console.log(`${req.method} ${req.path}`);
+    next();
+});
+
 // Routes
 app.get('/api/hello', (_req: Request, res: Response) => {
     res.json({ message: 'Hello!' });
@@ -123,6 +129,14 @@ app.use((req, res, next) => {
     return res.redirect(['https://', req.get('Host'), req.url].join(''));
   }
   next();
+});
+
+// After all routes are registered
+console.log('Registered routes:');
+app._router.stack.forEach((r: any) => {
+    if (r.route && r.route.path) {
+        console.log(`${Object.keys(r.route.methods)} ${r.route.path}`);
+    }
 });
 
 // Start server
