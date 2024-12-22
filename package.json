@@ -6,7 +6,7 @@
     "postinstall": "npm run build"
   },
   "engines": {
-    "node": "20.12.2"
+    "node": ">=20.0.0 <21.0.0"
   },
   "dependencies": {
     "cors": "^2.8.5",
