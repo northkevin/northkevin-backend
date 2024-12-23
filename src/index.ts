@@ -1,14 +1,14 @@
-import express, { Request, Response, NextFunction } from 'express';
+import express from 'express';
 import cors from 'cors';
 import jwt from 'jsonwebtoken';
-import type { RequestHandler } from 'express';
-import { recentLearnings } from './data/learnings';
+import learningRoutes from './routes/learningRoutes';
 import config from './config/env';
+import type { RequestHandler, Request, Response } from 'express';
 
 const app = express();
 const port = config.port;
 
-// Middleware setup - move these to the top
+// Middleware setup
 const isDevelopment = process.env.NODE_ENV !== 'production';
 app.use(cors({
     origin: config.corsOrigins,
@@ -16,7 +16,7 @@ app.use(cors({
     methods: ['GET', 'POST', 'OPTIONS'],
     allowedHeaders: ['Content-Type', 'Authorization']
 }));
-app.use(express.json()); // This is crucial for parsing JSON request bodies
+app.use(express.json());
 
 // Secret key and password setup
 const JWT_SECRET = config.jwtSecret;
@@ -29,8 +29,6 @@ if (!process.env.JWT_SECRET) {
 if (!process.env.DEV_PASSWORD) {
     console.warn('Warning: DEV_PASSWORD environment variable not set. Using fallback password.');
 }
-
-// Add warning log for CORS configuration
 if (!process.env.CORS_ORIGINS) {
     console.warn('Warning: CORS_ORIGINS environment variable not set. Using default origins.');
 }
@@ -53,7 +51,7 @@ const authenticateToken = (req: any, res: any, next: any) => {
     });
 };
 
-// At the top of your routes
+// Request logging middleware
 app.use((req, res, next) => {
     console.log(`${req.method} ${req.path}`);
     next();
@@ -63,7 +61,6 @@ app.use((req, res, next) => {
 app.get('/api/hello', (_req: Request, res: Response) => {
     res.json({ message: 'Hello!' });
 });
-
 
 // Dev authentication routes
 const loginHandler: RequestHandler = (req, res) => {
@@ -89,7 +86,6 @@ const loginHandler: RequestHandler = (req, res) => {
 };
 
 app.post('/api/dev/login', loginHandler);
-
 app.get('/api/dev/protected', authenticateToken, (req: Request, res: Response) => {
     res.json({ message: 'You have access to dev endpoints!' });
 });
@@ -97,37 +93,8 @@ app.get('/api/dev/protected', authenticateToken, (req: Request, res: Response) =
 // Add a specific OPTIONS handler for the login endpoint
 app.options('/api/dev/login', cors());
 
-// In-memory storage for now (would typically be in a database)
-// Import learnings from separate file
-
-
-// GET endpoint to retrieve learnings
-app.get('/api/learnings', (_req: Request, res: Response) => {
-    res.json(recentLearnings);
-});
-
-// POST endpoint to add a new learning
-const addLearningHandler = (req: Request, res: Response) => {
-    const { content, date, links } = req.body;
-
-    if (!content || !date) {
-        res.status(400).json({ message: 'Content and date are required' });
-    }
-    else {
-        console.log('Adding learning:', req.body);
-        const newLearning = {
-            id: recentLearnings.length > 0 ? Math.max(...recentLearnings.map(l => l.id)) + 1 : 1,
-            date,
-            content,
-            links: links || []
-        };
-
-        recentLearnings.unshift(newLearning);
-        res.status(201).json(newLearning);
-    }
-};
-
-app.post('/api/learnings', authenticateToken, addLearningHandler);
+// Mount learning routes
+app.use('/api', learningRoutes);
 
 // Add HTTPS redirect middleware
 app.use((req, res, next) => {
