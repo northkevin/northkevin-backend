@@ -1,3 +1,9 @@
+import dotenv from 'dotenv';
+
+// Load .env files
+dotenv.config({ path: '.env.local' }); // Load .env.local first (takes precedence)
+dotenv.config(); // Load .env second
+
 interface Config {
     port: number;
     nodeEnv: string;

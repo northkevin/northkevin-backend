@@ -2,7 +2,7 @@
   "scripts": {
     "start": "node dist/index.js",
     "build": "tsc",
-    "dev": "nodemon --exec ts-node src/index.ts",
+    "dev": "NODE_ENV=development nodemon -r dotenv/config --exec ts-node src/index.ts dotenv_config_path=.env.local",
     "postinstall": "npm run build"
   },
   "engines": {
@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "cors": "^2.8.5",
+    "dotenv": "^16.4.7",
     "express": "^4.21.1",
     "jsonwebtoken": "^9.0.2"
   },
