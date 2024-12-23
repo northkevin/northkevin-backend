@@ -9,6 +9,7 @@ interface Config {
     nodeEnv: string;
     jwtSecret: string;
     devPassword: string;
+    corsOrigins: string[];
 }
 
 function validateEnv(): Config {
@@ -23,7 +24,10 @@ function validateEnv(): Config {
         port: parseInt(process.env.PORT || '8080', 10),
         nodeEnv: process.env.NODE_ENV || 'development',
         jwtSecret: process.env.JWT_SECRET!,
-        devPassword: process.env.DEV_PASSWORD!
+        devPassword: process.env.DEV_PASSWORD!,
+        corsOrigins: process.env.CORS_ORIGINS
+            ? process.env.CORS_ORIGINS.split(',').map(origin => origin.trim())
+            : ['http://localhost:3000']
     };
 }
 

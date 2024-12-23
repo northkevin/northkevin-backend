@@ -11,7 +11,7 @@ const port = config.port;
 // Middleware setup - move these to the top
 const isDevelopment = process.env.NODE_ENV !== 'production';
 app.use(cors({
-    origin: isDevelopment ? 'http://localhost:3000' : 'https://northkevin.com',
+    origin: config.corsOrigins,
     credentials: true,
     methods: ['GET', 'POST', 'OPTIONS'],
     allowedHeaders: ['Content-Type', 'Authorization']
@@ -28,6 +28,11 @@ if (!process.env.JWT_SECRET) {
 }
 if (!process.env.DEV_PASSWORD) {
     console.warn('Warning: DEV_PASSWORD environment variable not set. Using fallback password.');
+}
+
+// Add warning log for CORS configuration
+if (!process.env.CORS_ORIGINS) {
+    console.warn('Warning: CORS_ORIGINS environment variable not set. Using default origins.');
 }
 
 // Authentication middleware
