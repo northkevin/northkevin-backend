@@ -1,9 +1,8 @@
 import { Router } from 'express';
-import { LearningController } from '../controllers/learningController';
+import { handleGetLearnings } from '../controllers/learningController';
 
 const router = Router();
-const controller = new LearningController();
 
-router.get('/learnings', (req, res) => controller.getLearnings(req, res));
+router.get('/learnings', handleGetLearnings);
 
 export default router;
