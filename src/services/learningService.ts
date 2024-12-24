@@ -1,4 +1,4 @@
-import { Learning, LearningsResponse, PaginationParams } from '../models/Learning';
+import { LearningsResponse, PaginationParams } from '../models/Learning';
 import { LearningRepository } from '../repositories/learningRepository';
 
 export class LearningService {
@@ -10,10 +10,10 @@ export class LearningService {
 
     async getLearnings(params: PaginationParams): Promise<LearningsResponse> {
         const { limit, cursor } = params;
-        
+
         const paginatedResult = await this.repository.findPaginated(limit, cursor);
         console.log('Repository response:', paginatedResult);
-        
+
         const total = await this.repository.count();
 
         return {
