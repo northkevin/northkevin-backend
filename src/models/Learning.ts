@@ -10,6 +10,11 @@ export interface Learning {
     }[];
 }
 
+export interface PaginatedResult {
+    data: Learning[];
+    nextCursor?: string;
+}
+
 export interface LearningsResponse {
     learnings: Learning[];
     nextCursor?: string;

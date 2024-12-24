@@ -11,16 +11,14 @@ export class LearningService {
     async getLearnings(params: PaginationParams): Promise<LearningsResponse> {
         const { limit, cursor } = params;
         
-        const learnings = await this.repository.findPaginated(limit, cursor);
+        const paginatedResult = await this.repository.findPaginated(limit, cursor);
+        console.log('Repository response:', paginatedResult);
+        
         const total = await this.repository.count();
 
-        const nextCursor = learnings.length === limit 
-            ? learnings[learnings.length - 1].date 
-            : undefined;
-
         return {
-            learnings,
-            nextCursor,
+            learnings: paginatedResult.data,
+            nextCursor: paginatedResult.nextCursor,
             total
         };
     }

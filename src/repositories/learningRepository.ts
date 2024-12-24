@@ -1,32 +1,61 @@
 import { Learning } from '../models/Learning';
+import * as fs from 'fs/promises';
+import * as path from 'path';
 
-// This will be replaced with PostgreSQL queries later
-export const recentLearnings: Learning[] = [
-    // ... existing learnings data ...
-];
+interface PaginatedResult {
+    data: Learning[];
+    nextCursor?: string;
+}
 
 export class LearningRepository {
-    async findAll(): Promise<Learning[]> {
-        return recentLearnings;
+    private dataPath: string;
+
+    constructor() {
+        this.dataPath = path.join(__dirname, '../data/learnings.json');
     }
 
-    async findPaginated(limit: number, cursor?: string): Promise<Learning[]> {
-        const sortedLearnings = [...recentLearnings].sort((a, b) =>
-            new Date(b.date).getTime() - new Date(a.date).getTime()
-        );
+    private async readData(): Promise<Learning[]> {
+        try {
+            const data = await fs.readFile(this.dataPath, 'utf8');
+            return JSON.parse(data).learnings;
+        } catch (error) {
+            console.error('Error reading learnings data:', error);
+            return [];
+        }
+    }
+
+    async findPaginated(limit: number, cursor?: string): Promise<PaginatedResult> {
+        const learnings = await this.readData();
+        const sortedLearnings = [...learnings].sort((a, b) => b.id - a.id);
+        console.log('Sorted learnings:', sortedLearnings.map(l => l.id));
 
         if (!cursor) {
-            return sortedLearnings.slice(0, limit);
+            const data = sortedLearnings.slice(0, limit);
+            const nextItem = sortedLearnings[limit];
+            const nextCursor = nextItem ? nextItem.id.toString() : undefined;
+            console.log('First page - data:', data.map(l => l.id), 'nextCursor:', nextCursor);
+            return { data, nextCursor };
         }
 
-        const startIndex = sortedLearnings.findIndex(learning =>
-            new Date(learning.date).getTime() < new Date(cursor).getTime()
-        );
+        const cursorId = parseInt(cursor);
+        console.log('Looking for items with id <', cursorId);
 
-        return sortedLearnings.slice(startIndex, startIndex + limit);
+        const startIndex = sortedLearnings.findIndex(learning => learning.id < cursorId);
+        console.log('Start index:', startIndex);
+
+        if (startIndex === -1) return { data: [] };
+
+        const data = sortedLearnings.slice(startIndex, startIndex + limit);
+        const nextCursor = data.length === limit && startIndex + limit < sortedLearnings.length
+            ? data[data.length - 1].id.toString()
+            : undefined;
+
+        console.log('Subsequent page - data:', data.map(l => l.id), 'nextCursor:', nextCursor);
+        return { data, nextCursor };
     }
 
     async count(): Promise<number> {
-        return recentLearnings.length;
+        const learnings = await this.readData();
+        return learnings.length;
     }
 }
