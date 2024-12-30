@@ -8,6 +8,24 @@ interface PaginatedResult {
 // In-memory data store
 const learningsData: Learning[] = [
     {
+        "id": 12,
+        "date": "2024-12-30",
+        "content": "Finally ditched my janky JSON files and Python scripts for Obsidian's macOS app - way better for organizing my brain dumps! Love how I can link notes together and see everything mapped out in that cool graph view, plus it's basically Ryan Holiday's notecard system but for nerds like me.",
+        "links": [
+            {
+                "text": "Ryan Holiday's Notecard System",
+                "url": "https://ryanholiday.net/the-notecard-system-the-key-for-remembering-organizing-and-using-everything-you-read/",
+                "type": "website"
+            },
+            {
+                "text": "Obsidian",
+                "url": "https://obsidian.md/",
+                "type": "website"
+            }
+        ],
+        "tags": ["productivity", "note-taking", "research", "tools", "obsidian"]
+    },
+    {
         "id": 11,
         "date": "2024-12-29",
         "content": "Built out a JSON structure to keep track of all the coding videos I watch. Made it so I can tag different parts of the transcripts with stuff like 'cool ideas' or 'need to try this'. Pretty happy with how the data is organized - makes it super easy to search through later and find those 'aha moments' when I need them. Way better than my old method of just dumping everything in random notes.",
@@ -138,7 +156,8 @@ const learningsData: Learning[] = [
             "figma",
             "til"
         ]
-    }
+    },
+
 ];
 
 const readData = async (): Promise<Learning[]> => {
