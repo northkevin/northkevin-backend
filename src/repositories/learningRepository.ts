@@ -8,6 +8,32 @@ interface PaginatedResult {
 // In-memory data store
 const learningsData: Learning[] = [
     {
+        "id": 11,
+        "date": "2024-12-29",
+        "content": "Built out a JSON structure to keep track of all the coding videos I watch. Made it so I can tag different parts of the transcripts with stuff like 'cool ideas' or 'need to try this'. Pretty happy with how the data is organized - makes it super easy to search through later and find those 'aha moments' when I need them. Way better than my old method of just dumping everything in random notes.",
+        "links": [
+            {
+                "text": "JSON Schema Best Practices",
+                "url": "https://json-schema.org/learn/getting-started-step-by-step",
+                "type": "website"
+            }
+        ],
+        "tags": ["data-structures", "json", "schema-design", "backend"]
+    },
+    {
+        "id": 10,
+        "date": "2024-12-28",
+        "content": "Got my Python scripts working to pull transcripts from YouTube and Vimeo videos! Set up a nice system to organize all the content - can tag important parts and filter through different types of insights (like key points or interesting ideas I want to revisit). Handles both JSON and WebVTT files now, and doesn't break when the transcripts are messy. Going to be super useful for keeping track of all the tech content I watch and building my own knowledge base.",
+        "links": [
+            {
+                "text": "Content Management Systems Architecture",
+                "url": "https://www.cms.gov/Research-Statistics-Data-and-Systems/CMS-Information-Technology/XLC/Downloads/SelectingDevelopingtheArchitecture.pdf",
+                "type": "document"
+            }
+        ],
+        "tags": ["cms", "architecture", "content-management", "fullstack"]
+    },
+    {
         id: 9,
         date: "2024-12-23",
         content: "I learned how to organize an Express app better by using MVC and functional programming. I built a paginated API endpoint that works with React Query's infiniteQuery hook. I fixed CORS issues and got everything running smoothly on Railway.com.",
