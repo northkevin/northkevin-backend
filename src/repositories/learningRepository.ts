@@ -8,6 +8,50 @@ interface PaginatedResult {
 // In-memory data store
 const learningsData: Learning[] = [
   {
+    id: 17,
+    date: "2024-03-19",
+    content:
+      "I took the dive into using Airbnb's Visx library.  I built this whole visualization system that shows my YouTube watch history tags and topics in this super clean interactive display. The fun part was figuring out the logarithmic scaling - makes the word sizes actually make sense instead of being all over the place. Added these real-time controls where you can mess with everything - colors, fonts, even how the words spiral around. Pretty proud of customizing the props to experiment with different layouts, saved me a lot of time alt+tabbing between the code and the browser.",
+    links: [
+      {
+        text: "Visx Word Cloud Guide",
+        url: "https://airbnb.io/visx/wordcloud",
+        type: "documentation",
+      },
+      {
+        text: "D3 Scale Documentation",
+        url: "https://d3js.org/d3-scale",
+        type: "documentation",
+      },
+      {
+        text: "React Spring Animation",
+        url: "https://www.react-spring.dev/",
+        type: "library",
+      },
+    ],
+    tags: ["data-visualization", "react", "d3"],
+  },
+  {
+    id: 16,
+    date: "2024-03-18",
+    content:
+      "I've always wanted to use TanStack React Table and I was able to get it working in under an hour! Set up this whole system for handling my YouTube video data with pagination, sorting and filtering.  My favorite part is how I can enable/disable columns and the table just handles it.  There's 49,000+ videos in my database and it's super fast.  I'm excited to use this in my current and future projects.",
+    links: [
+      {
+        text: "TanStack Table Documentation",
+        url: "https://tanstack.com/table/v8",
+        type: "documentation",
+      },
+      {
+        text: "React Query Suspense Guide",
+        url: "https://tanstack.com/query/latest/docs/react/guides/suspense",
+        type: "documentation",
+      },
+    ],
+    tags: ["react", "typescript", "data-management"],
+  },
+
+  {
     id: 15,
     date: "2024-01-02",
     content:
