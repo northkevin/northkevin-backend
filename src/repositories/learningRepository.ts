@@ -22,6 +22,19 @@ const learningsData: Learning[] = [
     tags: ["nextjs", "typescript", "error-handling", "api-design"],
   },
   {
+    id: 19,
+    date: "2025-01-06",
+    content:
+      "I've been hesitant to learn next.js, it reminded me too much of Java Spring each time I tried to learn it.  I'm glad I finally dove in, it's feels like a magical framework that just works.  I've already stumbled through what a 'dynamic route' is and its entertaining to see how javascript causes confusion no matter what you're doing :D.",
+    links: [
+      {
+        text: "Next.js Dynamic Routes",
+        url: "https://nextjs.org/docs/pages/building-your-application/routing/dynamic-routes",
+        type: "documentation",
+      },
+    ],
+  },
+  {
     id: 18,
     date: "2025-01-05",
     content:
