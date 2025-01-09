@@ -25,7 +25,7 @@ const learningsData: Learning[] = [
     id: 18,
     date: "2025-01-05",
     content:
-      "Got deeper into shadcn today - turns out I was doing the imports all wrong!  I'm excited to use the new components and see how extending / reusing ends up working out.",
+      "Finnaly, a React UI library that understands how developers think :D.  I searched for a component library that will help me skip past the common pitfalls of building a new component.  I found shadcn/ui and I like the way it's designed, we copy/paste the code and then customize it.  No worry about updating packages or breaking changes, here's the best implementation of a component, tweak it to fit your needs..",
     links: [
       {
         text: "shadcn/ui Documentation",
@@ -105,7 +105,7 @@ const learningsData: Learning[] = [
     id: 14,
     date: "2024-01-01",
     content:
-      "switched to prisma from raw sql today... man what a difference. was getting tired of writing queries by hand but this orm thing actually handles all the annoying stuff - big numbers for views, json blobs for tags, you name it. kinda went down a rabbit hole setting up the schema but ended up way cleaner than before. pretty wild how the types just sync with typescript now. threw in some watch pattern tracking cause apparently i needed more ways to prove i spend too much time watching tech videos. gonna build some analytics around it or something idk",
+      "I landed on using prisma as my ORM tool.  \nI wanted:\n\t1. To keep monorepo structure to my app, 1 prisma.schema file sounds nice.\n\t2. I want to keep my brain using 1 progamming language, so prisma is typescript.\n\t3. I want to make swift changes right now, so iterating is easier, prisma is a good fit.\nI just hope the backend api doesn't get too complex with prisma.",
     links: [
       {
         text: "Prisma Schema",
