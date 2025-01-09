@@ -9,9 +9,9 @@ interface PaginatedResult {
 const learningsData: Learning[] = [
   {
     id: 20,
-    date: "2024-01-07",
+    date: "2025-01-07",
     content:
-      "Man, those save button bugs were driving me crazy! Finally fixed them by adding better error messages and TypeScript types. It's wild how much easier debugging becomes when you get proper error details in production. Added some fancy logging too - now we can actually tell what's going wrong when users hit those API endpoints.",
+      "Adding request logging to the backend was a game changer!  I like next.js's error handling, it's very developer friendly and easy to copy/paste error messages into the console.",
     links: [
       {
         text: "Next.js API Routes",
@@ -22,24 +22,10 @@ const learningsData: Learning[] = [
     tags: ["nextjs", "typescript", "error-handling", "api-design"],
   },
   {
-    id: 19,
-    date: "2024-01-06",
-    content:
-      "Built this cool little tool to track my coding sessions! It's like a fitbit for programming - shows me where I'm spending my time when I code. Pretty eye-opening to see my actual patterns vs what I thought they were. Hoping this helps me figure out when I'm most productive and where I'm getting stuck.",
-    links: [
-      {
-        text: "Session Tracker Setup",
-        url: "https://github.com/northkevin/dev-tools/session-tracker",
-        type: "website",
-      },
-    ],
-    tags: ["productivity", "tooling", "analytics", "developer-experience"],
-  },
-  {
     id: 18,
-    date: "2024-01-05",
+    date: "2025-01-05",
     content:
-      "Got deeper into shadcn today - turns out I was doing the imports all wrong! Updated our team's docs to show everyone the right way to customize components and import them. No more random UI bugs from importing from the wrong places. Small win but it's gonna save us so many headaches.",
+      "Got deeper into shadcn today - turns out I was doing the imports all wrong!  I'm excited to use the new components and see how extending / reusing ends up working out.",
     links: [
       {
         text: "shadcn/ui Documentation",
@@ -53,7 +39,7 @@ const learningsData: Learning[] = [
     id: 17,
     date: "2025-01-04",
     content:
-      "I took the dive into using Airbnb's Visx library.  I built this whole visualization system that shows my YouTube watch history tags and topics in this super clean interactive display. The fun part was figuring out the logarithmic scaling - makes the word sizes actually make sense instead of being all over the place. Added these real-time controls where you can mess with everything - colors, fonts, even how the words spiral around. Pretty proud of customizing the props to experiment with different layouts, saved me a lot of time alt+tabbing between the code and the browser.",
+      "I took the dive into using Airbnb's Visx library.  I built this whole visualization system that shows my YouTube watch history tags and topics in this super clean interactive display. The fun part was adding these real-time controls where you can mess with everything - colors, fonts, even how the words spiral around. Pretty proud of customizing the props to experiment with different layouts, saved me a lot of time alt+tabbing between the code and the browser.",
     links: [
       {
         text: "Visx Word Cloud Guide",
@@ -65,13 +51,8 @@ const learningsData: Learning[] = [
         url: "https://d3js.org/d3-scale",
         type: "documentation",
       },
-      {
-        text: "React Spring Animation",
-        url: "https://www.react-spring.dev/",
-        type: "library",
-      },
     ],
-    tags: ["data-visualization", "react", "d3"],
+    tags: ["data-visualization", "react", "airbnb", "visx"],
   },
   {
     id: 16,
@@ -97,7 +78,7 @@ const learningsData: Learning[] = [
     id: 15,
     date: "2024-01-02",
     content:
-      "Finally got my monorepo working smoothly! Split up the TypeScript config between the Node.js backend and React frontend, which was a bit tricky but totally worth it. The coolest part is this stats system I built that crunches through my entire YouTube history - we're talking 7 years of data! Super proud of how modular I made it - I can plug in new analytics stuff without messing with the existing code. Already thinking about how I can use this for podcast data next!",
+      "Finally got my monorepo working smoothly by splitting up the TypeScript config between the Node.js backend and React frontend.  Which was a bit tricky but totally worth it. The coolest part is this stats system I built that crunches through my entire YouTube history - we're talking 7 years of data!  I can plug in new analytics stuff without messing with the existing code. Already thinking about how I can use this for podcast data next!",
     links: [
       {
         text: "TypeScript Project References",
@@ -138,7 +119,7 @@ const learningsData: Learning[] = [
     id: 13,
     date: "2023-12-31",
     content:
-      "so i built this python thing to scrape my entire youtube history... kinda went overboard and pulled 7 years worth lol. had to get clever with the youtube api rate limits cause apparently they dont want you hammering their servers (fair). ended up processing everything in batches which was actually pretty satisfying to watch. now i got this massive dataset with like 3000+ videos - all the nerdy stuff like categories, languages, view counts. gonna use it to build some analytics cause apparently i needed concrete proof of how much time i waste on coding videos",
+      "So i built this python thing to scrape my entire youtube history... kinda went overboard and pulled 7 years worth lol. had to get clever with the youtube api rate limits cause apparently they dont want you hammering their servers (fair). ended up processing everything in batches which was actually pretty satisfying to watch. now i got this massive dataset with like 3000+ videos - all the nerdy stuff like categories, languages, view counts. gonna use it to build some analytics cause apparently i needed concrete proof of how much time i waste on coding videos",
     links: [
       {
         text: "YouTube Data API Quotas",
