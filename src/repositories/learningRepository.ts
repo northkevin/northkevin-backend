@@ -8,8 +8,50 @@ interface PaginatedResult {
 // In-memory data store
 const learningsData: Learning[] = [
   {
+    id: 20,
+    date: "2024-01-07",
+    content:
+      "Man, those save button bugs were driving me crazy! Finally fixed them by adding better error messages and TypeScript types. It's wild how much easier debugging becomes when you get proper error details in production. Added some fancy logging too - now we can actually tell what's going wrong when users hit those API endpoints.",
+    links: [
+      {
+        text: "Next.js API Routes",
+        url: "https://nextjs.org/docs/app/building-your-application/routing/route-handlers",
+        type: "website",
+      },
+    ],
+    tags: ["nextjs", "typescript", "error-handling", "api-design"],
+  },
+  {
+    id: 19,
+    date: "2024-01-06",
+    content:
+      "Built this cool little tool to track my coding sessions! It's like a fitbit for programming - shows me where I'm spending my time when I code. Pretty eye-opening to see my actual patterns vs what I thought they were. Hoping this helps me figure out when I'm most productive and where I'm getting stuck.",
+    links: [
+      {
+        text: "Session Tracker Setup",
+        url: "https://github.com/northkevin/dev-tools/session-tracker",
+        type: "website",
+      },
+    ],
+    tags: ["productivity", "tooling", "analytics", "developer-experience"],
+  },
+  {
+    id: 18,
+    date: "2024-01-05",
+    content:
+      "Got deeper into shadcn today - turns out I was doing the imports all wrong! Updated our team's docs to show everyone the right way to customize components and import them. No more random UI bugs from importing from the wrong places. Small win but it's gonna save us so many headaches.",
+    links: [
+      {
+        text: "shadcn/ui Documentation",
+        url: "https://ui.shadcn.com/docs",
+        type: "website",
+      },
+    ],
+    tags: ["shadcn", "react", "ui-components", "documentation"],
+  },
+  {
     id: 17,
-    date: "2024-03-19",
+    date: "2025-01-04",
     content:
       "I took the dive into using Airbnb's Visx library.  I built this whole visualization system that shows my YouTube watch history tags and topics in this super clean interactive display. The fun part was figuring out the logarithmic scaling - makes the word sizes actually make sense instead of being all over the place. Added these real-time controls where you can mess with everything - colors, fonts, even how the words spiral around. Pretty proud of customizing the props to experiment with different layouts, saved me a lot of time alt+tabbing between the code and the browser.",
     links: [
@@ -33,7 +75,7 @@ const learningsData: Learning[] = [
   },
   {
     id: 16,
-    date: "2024-03-18",
+    date: "2025-01-03",
     content:
       "I've always wanted to use TanStack React Table and I was able to get it working in under an hour! Set up this whole system for handling my YouTube video data with pagination, sorting and filtering.  My favorite part is how I can enable/disable columns and the table just handles it.  There's 49,000+ videos in my database and it's super fast.  I'm excited to use this in my current and future projects.",
     links: [
